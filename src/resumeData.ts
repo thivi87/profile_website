@@ -17,7 +17,7 @@ export type Certification = {
 };
 
 export const resume = {
-  photo: "/assets/profile.jpg",
+  photo: "assets/profile.jpg",
   name: "Shaun K. Thivierge, CPP, PSP, PCI",
   tagline: "Security Leader • Cyber & Physical Risk • Emergency Management",
   location: "Salt Lake City, UT",
@@ -62,13 +62,13 @@ export const resume = {
     { school: "UC Irvine", credential: "Customer Experience Certificate", location: "Irvine, CA" }
   ],
   certifications: [
-    { name: "ASIS Certified Protection Professional (CPP)", issuer: "ASIS International", since: "Nov 2018 – Present", url: "https://www.credly.com/badges/d6e7e513-507e-4fb4-ac17-5960d8300980/linked_in_profile", logo: "/assets/logos/asis.png", badge: "/assets/badges/cpp.png" },
-    { name: "ASIS Physical Security Professional (PSP)", issuer: "ASIS International", since: "Mar 2017 – Present", url: "https://www.credly.com/badges/61e332cd-e32b-4147-a8c6-0027837245e1/linked_in", logo: "/assets/logos/asis.png", badge: "/assets/badges/psp.png" },
-    { name: "ASIS Professional Certified Investigator (PCI)", issuer: "ASIS International", since: "Dec 2021 – Present", url: "https://www.credly.com/badges/ed4b3029-cd9b-4328-80b1-66d7230dc69b/linked_in_profile", logo: "/assets/logos/asis.png", badge: "/assets/badges/pci.png" },
-    { name: "CompTIA Security+ (CE)", issuer: "CompTIA", since: "Nov 2022 – Present", url: "https://www.credly.com/badges/ba619732-33f8-45df-a0ed-84d5d3c04607/linked_in_profile", logo: "/assets/logos/comptia.png", badge: "/assets/badges/securityplus.png" },
-    { name: "OSHA 30-Hour Construction", issuer: "ClickSafety", since: "Mar 2019 – Present", url: "https://business.clicksafety.com/impe/ucp/certificate/certificate.asp?courseid=MOOD39&userid=sthivierge", logo: "/assets/logos/clicksafety.png", badge: "/assets/badges/osha30.png" },
-    { name: "FAA Part 107 Remote Pilot", issuer: "FAA", since: "Dec 2020 – Present", logo: "/assets/logos/faa.png" },
-    { name: "FCC Amateur Radio Technician (KG6TNB)", issuer: "FCC", since: "Nov 2013 – Present", logo: "/assets/logos/fcc.png" }
+    { name: "ASIS Certified Protection Professional (CPP)", issuer: "ASIS International", since: "Nov 2018 – Present", url: "https://www.credly.com/badges/d6e7e513-507e-4fb4-ac17-5960d8300980/linked_in_profile", logo: "assets/logos/asis.png", badge: "assets/badges/cpp.png" },
+    { name: "ASIS Physical Security Professional (PSP)", issuer: "ASIS International", since: "Mar 2017 – Present", url: "https://www.credly.com/badges/61e332cd-e32b-4147-a8c6-0027837245e1/linked_in", logo: "assets/logos/asis.png", badge: "assets/badges/psp.png" },
+    { name: "ASIS Professional Certified Investigator (PCI)", issuer: "ASIS International", since: "Dec 2021 – Present", url: "https://www.credly.com/badges/ed4b3029-cd9b-4328-80b1-66d7230dc69b/linked_in_profile", logo: "assets/logos/asis.png", badge: "assets/badges/pci.png" },
+    { name: "CompTIA Security+ (CE)", issuer: "CompTIA", since: "Nov 2022 – Present", url: "https://www.credly.com/badges/ba619732-33f8-45df-a0ed-84d5d3c04607/linked_in_profile", logo: "assets/logos/comptia.png", badge: "assets/badges/securityplus.png" },
+    { name: "OSHA 30-Hour Construction", issuer: "ClickSafety", since: "Mar 2019 – Present", url: "https://business.clicksafety.com/impe/ucp/certificate/certificate.asp?courseid=MOOD39&userid=sthivierge", logo: "assets/logos/clicksafety.png", badge: "assets/badges/osha30.png" },
+    { name: "FAA Part 107 Remote Pilot", issuer: "FAA", since: "Dec 2020 – Present", logo: "assets/logos/faa.png" },
+    { name: "FCC Amateur Radio Technician (KG6TNB)", issuer: "FCC", since: "Nov 2013 – Present", logo: "assets/logos/fcc.png" }
   ],
   roles: [
     {
@@ -140,11 +140,11 @@ export const resume = {
 };
 
 export const logosByOrg: Record<string, string> = {
-  "Oportun": "/assets/logos/oportun.png",
-  "Pacific Gas & Electric Company (PG&E)": "/assets/logos/pge.png",
-  "Bank of the West": "/assets/logos/bankofthewest.png",
-  "AlliedBarton Security Services (now Allied Universal)": "/assets/logos/allieduniversal.png",
-  "Arizona State University": "/assets/logos/asu.png",
-  "UC Berkeley": "/assets/logos/ucberkeley.png",
-  "UC Irvine": "/assets/logos/uci.png"
+  "Oportun": "assets/logos/oportun.png",
+  "Pacific Gas & Electric Company (PG&E)": "assets/logos/pge.png",
+  "Bank of the West": "assets/logos/bankofthewest.png",
+  "AlliedBarton Security Services (now Allied Universal)": "assets/logos/allieduniversal.png",
+  "Arizona State University": "assets/logos/asu.png",
+  "UC Berkeley": "assets/logos/ucberkeley.png",
+  "UC Irvine": "assets/logos/uci.png"
 };
