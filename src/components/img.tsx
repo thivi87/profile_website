@@ -1,3 +1,4 @@
+// src/components/Img.tsx
 import React from "react";
 
 export const Img = ({ src, alt, className = "" }: { src?: string; alt: string; className?: string }) =>
