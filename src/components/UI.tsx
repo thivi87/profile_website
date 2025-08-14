@@ -1,7 +1,7 @@
 import React from "react";
 
 export const Button = ({ children, className = "", ...p }: React.HTMLAttributes<HTMLButtonElement>) =>
-  <button className={`btn ${className}`} {...p as any}>{children}</button>;
+  <button className={`btn ${className}`} {...(p as any)}>{children}</button>;
 
 export const Card: React.FC<{ className?: string, children: React.ReactNode }> = ({ className = "", children }) =>
   <div className={`card ${className}`}>{children}</div>;

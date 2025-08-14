@@ -17,11 +17,12 @@ export type Certification = {
 };
 
 export const resume = {
-  photo: "assets/profile.jpg",
+  photo: "assets/profile.jpg", // place in public/assets/profile.jpg
   name: "Shaun K. Thivierge, CPP, PSP, PCI",
   tagline: "Security Leader • Cyber & Physical Risk • Emergency Management",
   location: "Salt Lake City, UT",
   email: "sthivierge@gmail.com",
+  // phone removed from UI
   phone: "+1 (626) 665-6459",
   linkedin: "https://www.linkedin.com/in/sthivierge/",
   summary:
@@ -69,7 +70,7 @@ export const resume = {
     { name: "OSHA 30-Hour Construction", issuer: "ClickSafety", since: "Mar 2019 – Present", url: "https://business.clicksafety.com/impe/ucp/certificate/certificate.asp?courseid=MOOD39&userid=sthivierge", logo: "assets/logos/clicksafety.png", badge: "assets/badges/osha30.png" },
     { name: "FAA Part 107 Remote Pilot", issuer: "FAA", since: "Dec 2020 – Present", logo: "assets/logos/faa.png" },
     { name: "FCC Amateur Radio Technician (KG6TNB)", issuer: "FCC", since: "Nov 2013 – Present", logo: "assets/logos/fcc.png" }
-  ],
+  ] as Certification[],
   roles: [
     {
       company: "Oportun",
@@ -124,17 +125,17 @@ export const resume = {
         "Managed onboarding/training for 670+ officers; vendor contracts across 8 sites (~3.1K hours/week)."
       ]
     }
-  ],
+  ] as Role[],
   additionalExperience: [
     {
       company: "Bank of the West",
       title: "Assistant Vice President, Physical Security Advisor",
-      domains: ["Physical Security", "Risk", "Leadership"]
+      domains: ["Physical Security", "Risk", "Leadership"],
     },
     {
       company: "AlliedBarton Security Services (now Allied Universal)",
       title: "Account Manager; Security/Safety Site Supervisor; GSOC Operator; Flex Officer",
-      domains: ["Physical Security", "Operations", "Leadership"]
+      domains: ["Physical Security", "Operations", "Leadership"],
     }
   ]
 };

@@ -1,21 +1,17 @@
-
 import React, { useMemo, useState } from "react";
-import { Page, Section, DomainBadge } from "./components/Layout";
-import { Button, Card, CardContent, Badge, Separator } from "./components/UI";
-import { Accordion } from "./components/Accordion";
-import { Img } from "./components/Img";
-import { OrgPill } from "./components/OrgPill";
+import { Page, Section, DomainBadge } from "./components";
+import { Button, Card, CardContent, Badge, Separator } from "./components";
+import { Accordion } from "./components";
+import { Img } from "./components";
+import { OrgPill } from "./components";
 import { resume } from "./resumeData";
 
 export default function App() {
   const [open, setOpen] = useState<Record<string, boolean>>({
     experience: true, skills: true, certs: true, leadership: true, publications: true, contact: true
   });
-  const toggle = (k: keyof typeof open) => setOpen(s => ({ ...s, [k]: !s[k] }));
   const expandAll = () => setOpen({ experience: true, skills: true, certs: true, leadership: true, publications: true, contact: true });
   const collapseAll = () => setOpen({ experience: false, skills: false, certs: false, leadership: false, publications: false, contact: false });
-
-  const coreDomains = ["Cybersecurity","Physical Security","Risk Assessment","Emergency Management","Automation & SOAR","Vulnerability Management","Incident Response","Vendor/TPRM"];
 
   const allDomains = useMemo(
     () => Array.from(new Set(resume.roles.flatMap(r => r.domains))).sort(),
@@ -48,9 +44,14 @@ export default function App() {
               <div className="row small">
                 <span>📍 {resume.location}</span>
                 <a href={`mailto:${resume.email}`}>✉️ {resume.email}</a>
-                <a href={`tel:${resume.phone}`}>📞 {resume.phone}</a>
                 <a href={resume.linkedin} target="_blank" rel="noreferrer">🔗 LinkedIn</a>
-                <a href="/Shaun K. Thivierge Resume.pdf" download className="btn secondary">Download Résumé</a>
+                <a
+                  href={(import.meta.env.BASE_URL || "/") + "Shaun K. Thivierge Resume.pdf"}
+                  download
+                  className="btn secondary"
+                >
+                  Download Résumé
+                </a>
               </div>
             </CardContent>
           </Card>
@@ -63,11 +64,11 @@ export default function App() {
             <Button className="ghost" onClick={collapseAll}>Collapse all</Button>
           </div>
 
-          {/* Skills */}
+          {/* ✅ SKILLS FIRST */}
           <Card>
             <CardContent>
               <Section title="Skills Matrix" subtitle="Click a chip to copy">
-                <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))" }}>
+                <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))" }}>
                   {[
                     { name: "Cybersecurity", items: ["Vulnerability Management","PCI DSS","SIEM","SOAR","SAST/DAST","Threat Feeds/IOC","Incident Response","Bug Bounty","Pen Testing mgmt","Security Convergence Strategy","Threat Assessment Methodologies","Identity & Credential Mgmt","Zero-Friction Access","Privacy-by-Design (PHI/PII)","Remote/Hybrid Risk Controls"] },
                     { name: "Physical Security", items: ["Access Control Federation","Global PSIM/GSOC","NERC-CIP Alignment","Lifecycle Mgmt","Investigations","Touchless/Low-Contact Access","Return-to-Work Facility Risk","IoT Surface Reduction"] },
@@ -90,7 +91,7 @@ export default function App() {
             </CardContent>
           </Card>
 
-          {/* Experience */}
+          {/* EXPERIENCE (after skills) */}
           <Card>
             <CardContent>
               <Section title="Experience">
@@ -134,25 +135,31 @@ export default function App() {
             </CardContent>
           </Card>
 
-          {/* Certifications & Education */}
+          {/* Licenses & Certifications — FULL WIDTH */}
           <Card>
             <CardContent>
               <Section title="Licenses & Certifications" subtitle="Click any badge to view the verified credential">
-                <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit,minmax(320px,1fr))" }}>
+                <div className="grid" style={{ gridTemplateColumns: "1fr", gap: 16 }}>
                   {resume.certifications.map((c, i) => (
                     <div key={i} className="card">
-                      <div className="content" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
-                        <div style={{ display: "flex", gap: 12, alignItems: "center", minWidth: 0 }}>
-                          {c.logo && <img src={c.logo} alt={`${c.issuer || c.name} logo`} style={{ height: 40, width: 40, objectFit: "contain", borderRadius: 8, border: "1px solid var(--border)" }} />}
+                      <div className="content" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 20 }}>
+                        <div style={{ display: "flex", gap: 16, alignItems: "center", minWidth: 0 }}>
+                          {c.logo && (
+                            <Img
+                              src={c.logo}
+                              alt={`${c.issuer || c.name} logo`}
+                              className=""
+                            />
+                          )}
                           <div style={{ minWidth: 0 }}>
-                            <div className="title" style={{ fontSize: 16 }}>{c.name}</div>
+                            <div className="title" style={{ fontSize: 18 }}>{c.name}</div>
                             <div className="small">{[c.issuer, c.since].filter(Boolean).join(" • ")}</div>
                           </div>
                         </div>
                         <div>
                           {c.badge ? (
                             <a href={c.url || "#"} target="_blank" rel="noreferrer" title="Verify credential">
-                              <img src={c.badge} alt={`${c.name} badge`} style={{ height: 44, width: "auto", objectFit: "contain" }} />
+                              <Img src={c.badge} alt={`${c.name} badge`} />
                             </a>
                           ) : c.url ? (
                             <a className="btn secondary" href={c.url} target="_blank" rel="noreferrer">Verify</a>
@@ -163,15 +170,27 @@ export default function App() {
                   ))}
                 </div>
               </Section>
+            </CardContent>
+          </Card>
 
+          {/* Education — FULL WIDTH */}
+          <Card>
+            <CardContent>
               <Section title="Education">
-                <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))" }}>
+                <div className="grid" style={{ gridTemplateColumns: "1fr", gap: 16 }}>
                   {resume.education.map((e, i) => (
                     <div key={i} className="card">
-                      <div className="content" style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                        <img src={`/assets/logos/${e.school === "Arizona State University" ? "asu" : e.school === "UC Berkeley" ? "ucberkeley" : "uci"}.png`} alt={`${e.school} logo`} style={{ height: 32, width: 32, objectFit: "contain", borderRadius: 6 }} />
+                      <div className="content" style={{ display: "flex", alignItems: "center", gap: 16 }}>
+                        <Img
+                          src={
+                            e.school === "Arizona State University" ? "assets/logos/asu.png"
+                            : e.school === "UC Berkeley" ? "assets/logos/ucberkeley.png"
+                            : "assets/logos/uci.png"
+                          }
+                          alt={`${e.school} logo`}
+                        />
                         <div>
-                          <div className="title" style={{ fontSize: 16 }}>{e.credential}</div>
+                          <div className="title" style={{ fontSize: 18 }}>{e.credential}</div>
                           <div className="small">{e.school}{e.location ? ` • ${e.location}` : ""}</div>
                         </div>
                       </div>
@@ -247,9 +266,8 @@ export default function App() {
               <Section title="Contact">
                 <div className="row">
                   <a className="btn" href={`mailto:${resume.email}`}>Email</a>
-                  <a className="btn secondary" href={`tel:${resume.phone}`}>Call</a>
                   <a className="btn secondary" href={resume.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
-                  <a className="btn ghost" href="/Shaun K. Thivierge Resume.pdf" download>Download Résumé (PDF)</a>
+                  <a className="btn ghost" href={(import.meta.env.BASE_URL || "/") + "Shaun K. Thivierge Resume.pdf"} download>Download Résumé (PDF)</a>
                 </div>
                 <p className="small" style={{ marginTop: 8 }}>Located in {resume.location}. Open to remote/hybrid leadership roles.</p>
               </Section>
