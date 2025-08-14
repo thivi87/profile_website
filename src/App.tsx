@@ -63,6 +63,33 @@ export default function App() {
             <Button className="ghost" onClick={collapseAll}>Collapse all</Button>
           </div>
 
+          {/* Skills */}
+          <Card>
+            <CardContent>
+              <Section title="Skills Matrix" subtitle="Click a chip to copy">
+                <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))" }}>
+                  {[
+                    { name: "Cybersecurity", items: ["Vulnerability Management","PCI DSS","SIEM","SOAR","SAST/DAST","Threat Feeds/IOC","Incident Response","Bug Bounty","Pen Testing mgmt","Security Convergence Strategy","Threat Assessment Methodologies","Identity & Credential Mgmt","Zero-Friction Access","Privacy-by-Design (PHI/PII)","Remote/Hybrid Risk Controls"] },
+                    { name: "Physical Security", items: ["Access Control Federation","Global PSIM/GSOC","NERC-CIP Alignment","Lifecycle Mgmt","Investigations","Touchless/Low-Contact Access","Return-to-Work Facility Risk","IoT Surface Reduction"] },
+                    { name: "Risk & EM", items: ["Risk Assessments","Policy/Standards","Emergency Basecamp Ops","Training & Exercises","Cross-Functional Risk Workshops","Converged Playbooks (Cyber+Physical)","Health-Data Governance"] },
+                    { name: "Leadership & Ops", items: ["Vendor/TPRM","RFP/POC","Program Mgmt","Automation","Change Enablement","Cross-functional Collaboration","Executive Advisory Partnering","Education & Mentorship","Stakeholder Alignment (Legal/HR/BCP)"] }
+                  ].map((cat, i) => (
+                    <div key={i} className="card">
+                      <div className="content">
+                        <div className="title">{cat.name}</div>
+                        <div className="row">
+                          {cat.items.map(it => (
+                            <span key={it} className="badge" onClick={() => navigator.clipboard.writeText(it)} style={{ cursor: "pointer" }}>{it}</span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </Section>
+            </CardContent>
+          </Card>
+
           {/* Experience */}
           <Card>
             <CardContent>
@@ -103,33 +130,6 @@ export default function App() {
                     </details>
                   </>
                 ) : null}
-              </Section>
-            </CardContent>
-          </Card>
-
-          {/* Skills */}
-          <Card>
-            <CardContent>
-              <Section title="Skills Matrix" subtitle="Click a chip to copy">
-                <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))" }}>
-                  {[
-                    { name: "Cybersecurity", items: ["Vulnerability Management","PCI DSS","SIEM","SOAR","SAST/DAST","Threat Feeds/IOC","Incident Response","Bug Bounty","Pen Testing mgmt","Security Convergence Strategy","Threat Assessment Methodologies","Identity & Credential Mgmt","Zero-Friction Access","Privacy-by-Design (PHI/PII)","Remote/Hybrid Risk Controls"] },
-                    { name: "Physical Security", items: ["Access Control Federation","Global PSIM/GSOC","NERC-CIP Alignment","Lifecycle Mgmt","Investigations","Touchless/Low-Contact Access","Return-to-Work Facility Risk","IoT Surface Reduction"] },
-                    { name: "Risk & EM", items: ["Risk Assessments","Policy/Standards","Emergency Basecamp Ops","Training & Exercises","Cross-Functional Risk Workshops","Converged Playbooks (Cyber+Physical)","Health-Data Governance"] },
-                    { name: "Leadership & Ops", items: ["Vendor/TPRM","RFP/POC","Program Mgmt","Automation","Change Enablement","Cross-functional Collaboration","Executive Advisory Partnering","Education & Mentorship","Stakeholder Alignment (Legal/HR/BCP)"] }
-                  ].map((cat, i) => (
-                    <div key={i} className="card">
-                      <div className="content">
-                        <div className="title">{cat.name}</div>
-                        <div className="row">
-                          {cat.items.map(it => (
-                            <span key={it} className="badge" onClick={() => navigator.clipboard.writeText(it)} style={{ cursor: "pointer" }}>{it}</span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
               </Section>
             </CardContent>
           </Card>
@@ -247,8 +247,9 @@ export default function App() {
               <Section title="Contact">
                 <div className="row">
                   <a className="btn" href={`mailto:${resume.email}`}>Email</a>
+                  <a className="btn secondary" href={`tel:${resume.phone}`}>Call</a>
                   <a className="btn secondary" href={resume.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
-                  <a className="btn ghost" href="/Shaun K. Thivierge Resume.pdf" download>Download Resume (PDF)</a>
+                  <a className="btn ghost" href="/Shaun K. Thivierge Resume.pdf" download>Download Résumé (PDF)</a>
                 </div>
                 <p className="small" style={{ marginTop: 8 }}>Located in {resume.location}. Open to remote/hybrid leadership roles.</p>
               </Section>
