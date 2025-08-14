@@ -24,22 +24,22 @@ export default function App() {
 
   return (
     <Page>
-      <div className="grid app-main-grid">
+      <div className="grid" style={{ gridTemplateColumns: "minmax(260px, 1fr) 2fr" }}>
         {/* Left rail: persistent photo, bio, highlights, contact */}
         <aside className="sticky">
           <Card>
             <CardContent>
-              <div className="avatar-container">
+              <div style={{ display: "flex", justifyContent: "center", marginBottom: 12 }}>
                 <Img src={resume.photo} alt={`${resume.name} profile photo`} className="avatar" />
               </div>
               <h1 className="h1">{resume.name}</h1>
-              <p className="muted tagline">{resume.tagline}</p>
+              <p className="muted" style={{ marginTop: 6 }}>{resume.tagline}</p>
 
               <Separator />
 
               <p className="summary">{resume.summary}</p>
 
-              <div className="row margin-top-12">
+              <div className="row" style={{ marginTop: 12 }}>
                 {resume.expertise.map(e => <span key={e} className="badge">{e}</span>)}
               </div>
 
@@ -58,7 +58,7 @@ export default function App() {
 
         {/* Right: sections */}
         <div className="grid">
-          <div className="row justify-end">
+          <div className="row" style={{ justifyContent: "flex-end" }}>
             <Button className="secondary" onClick={expandAll}>Expand all</Button>
             <Button className="ghost" onClick={collapseAll}>Collapse all</Button>
           </div>
@@ -75,10 +75,10 @@ export default function App() {
                 <div className="grid">
                   {resume.roles.map((r, i) => (
                     <Accordion key={i} title={`${r.title} • ${r.period}`}>
-                      <div className="row small margin-bottom-8">
+                      <div className="row small" style={{ marginBottom: 8 }}>
                         <OrgPill name={r.company} /> <span>• {r.location}</span>
                       </div>
-                      <div className="row domain-row">
+                      <div className="row" style={{ gap: 8, marginBottom: 8 }}>
                         {r.domains.map(d => <DomainBadge key={d} d={d} />)}
                       </div>
                       <ul className="list">
@@ -111,7 +111,7 @@ export default function App() {
           <Card>
             <CardContent>
               <Section title="Skills Matrix" subtitle="Click a chip to copy">
-                <div className="grid skills-matrix-grid">
+                <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))" }}>
                   {[
                     { name: "Cybersecurity", items: ["Vulnerability Management","PCI DSS","SIEM","SOAR","SAST/DAST","Threat Feeds/IOC","Incident Response","Bug Bounty","Pen Testing mgmt","Security Convergence Strategy","Threat Assessment Methodologies","Identity & Credential Mgmt","Zero-Friction Access","Privacy-by-Design (PHI/PII)","Remote/Hybrid Risk Controls"] },
                     { name: "Physical Security", items: ["Access Control Federation","Global PSIM/GSOC","NERC-CIP Alignment","Lifecycle Mgmt","Investigations","Touchless/Low-Contact Access","Return-to-Work Facility Risk","IoT Surface Reduction"] },
@@ -123,7 +123,7 @@ export default function App() {
                         <div className="title">{cat.name}</div>
                         <div className="row">
                           {cat.items.map(it => (
-                            <span key={it} className="badge badge-clickable" onClick={() => navigator.clipboard.writeText(it)}>{it}</span>
+                            <span key={it} className="badge" onClick={() => navigator.clipboard.writeText(it)} style={{ cursor: "pointer" }}>{it}</span>
                           ))}
                         </div>
                       </div>
@@ -138,21 +138,21 @@ export default function App() {
           <Card>
             <CardContent>
               <Section title="Licenses & Certifications" subtitle="Click any badge to view the verified credential">
-                <div className="grid grid-cols-auto-fit-320">
+                <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit,minmax(320px,1fr))" }}>
                   {resume.certifications.map((c, i) => (
                     <div key={i} className="card">
-                      <div className="content cert-content-flex">
-                        <div className="cert-flex-row">
-                          {c.logo && <img src={c.logo} alt={`${c.issuer || c.name} logo`} className="cert-logo" />}
-                          <div className="cert-min-width">
-                            <div className="title cert-title">{c.name}</div>
+                      <div className="content" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
+                        <div style={{ display: "flex", gap: 12, alignItems: "center", minWidth: 0 }}>
+                          {c.logo && <img src={c.logo} alt={`${c.issuer || c.name} logo`} style={{ height: 40, width: 40, objectFit: "contain", borderRadius: 8, border: "1px solid var(--border)" }} />}
+                          <div style={{ minWidth: 0 }}>
+                            <div className="title" style={{ fontSize: 16 }}>{c.name}</div>
                             <div className="small">{[c.issuer, c.since].filter(Boolean).join(" • ")}</div>
                           </div>
                         </div>
                         <div>
                           {c.badge ? (
                             <a href={c.url || "#"} target="_blank" rel="noreferrer" title="Verify credential">
-                              <img src={c.badge} alt={`${c.name} badge`} className="cert-badge-img" />
+                              <img src={c.badge} alt={`${c.name} badge`} style={{ height: 44, width: "auto", objectFit: "contain" }} />
                             </a>
                           ) : c.url ? (
                             <a className="btn secondary" href={c.url} target="_blank" rel="noreferrer">Verify</a>
@@ -165,13 +165,13 @@ export default function App() {
               </Section>
 
               <Section title="Education">
-                <div className="grid education-grid">
+                <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))" }}>
                   {resume.education.map((e, i) => (
                     <div key={i} className="card">
-                      <div className="content education-flex-row">
-                        <img src={`/assets/logos/${e.school === "Arizona State University" ? "asu" : e.school === "UC Berkeley" ? "ucberkeley" : "uci"}.png`} alt={`${e.school} logo`} className="education-logo" />
+                      <div className="content" style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                        <img src={`/assets/logos/${e.school === "Arizona State University" ? "asu" : e.school === "UC Berkeley" ? "ucberkeley" : "uci"}.png`} alt={`${e.school} logo`} style={{ height: 32, width: 32, objectFit: "contain", borderRadius: 6 }} />
                         <div>
-                          <div className="title education-credential">{e.credential}</div>
+                          <div className="title" style={{ fontSize: 16 }}>{e.credential}</div>
                           <div className="small">{e.school}{e.location ? ` • ${e.location}` : ""}</div>
                         </div>
                       </div>
@@ -186,7 +186,7 @@ export default function App() {
           <Card>
             <CardContent>
               <Section title="Leadership & Volunteer">
-                <div className="grid grid-cols-auto-fit-320">
+                <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit,minmax(320px,1fr))" }}>
                   {[
                     { org: "ASIS International — Utah Chapter", role: "Chapter Chair", period: "2023 – 2024" },
                     { org: "UC Irvine Customer Experience Advisory Board", role: "Board Member", period: "2022 – 2023" },
@@ -194,17 +194,17 @@ export default function App() {
                   ].map((v, i) => (
                     <div key={i} className="card">
                       <div className="content">
-                        <div className="title org-title">{v.org}</div>
+                        <div className="title" style={{ fontSize: 16 }}>{v.org}</div>
                         <div className="small">{v.role}</div>
-                        <div className="small margin-top-6">{v.period}</div>
+                        <div className="small" style={{ marginTop: 6 }}>{v.period}</div>
                       </div>
                     </div>
                   ))}
                 </div>
 
-                <div className="affiliations-container">
+                <div style={{ marginTop: 12 }}>
                   <p className="small">Professional Affiliations:</p>
-                  <div className="row affiliations-row">
+                  <div className="row" style={{ marginTop: 8 }}>
                     {resume.affiliations.map(a => <span key={a} className="badge">{a}</span>)}
                   </div>
                 </div>
@@ -216,11 +216,11 @@ export default function App() {
           <Card>
             <CardContent>
               <Section title="Publications & Media">
-                <div className="grid publications-grid">
+                <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit,minmax(320px,1fr))" }}>
                   {resume.publications.map((p, i) => (
                     <div key={i} className="card">
                       <div className="content">
-                        <div className="title publication-title">
+                        <div className="title" style={{ fontSize: 16 }}>
                           <a href={p.url} target="_blank" rel="noreferrer">{p.title}</a>
                         </div>
                         <div className="small">{p.year}</div>
@@ -229,7 +229,7 @@ export default function App() {
                   ))}
                 </div>
 
-                <div className="publications-extra">
+                <div style={{ marginTop: 12 }}>
                   <ul className="list small">
                     <li>Security convergence: uniting cyber and physical methodologies to improve threat modeling and response.</li>
                     <li>Trusted advisory mindset; education-first approach for stakeholders and end users.</li>
@@ -250,7 +250,7 @@ export default function App() {
                   <a className="btn secondary" href={resume.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
                   <a className="btn ghost" href="/Shaun K. Thivierge Resume.pdf" download>Download Resume (PDF)</a>
                 </div>
-                <p className="small contact-location">Located in {resume.location}. Open to remote/hybrid leadership roles.</p>
+                <p className="small" style={{ marginTop: 8 }}>Located in {resume.location}. Open to remote/hybrid leadership roles.</p>
               </Section>
             </CardContent>
           </Card>
