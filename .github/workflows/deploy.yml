@@ -21,28 +21,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          # If the cache was contributing to bad perms, disable it for now:
-          # cache: "npm"
+          cache: "npm"
 
-      - name: Install deps
-        run: npm install --no-audit --no-fund
-
-      # --- Fix permissions + prove vite exists ---
-      - name: Fix vite bin permissions
-        run: |
-          ls -l node_modules/.bin | sed -n '1,200p'
-          if [ ! -x node_modules/.bin/vite ]; then
-            chmod +x node_modules/.bin/vite
-          fi
-          node -v
-          npx vite --version
+      - name: Install dependencies
+        run: npm ci
 
       - name: Build
-        run: npx vite build
+        run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -56,6 +45,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy
+      - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
