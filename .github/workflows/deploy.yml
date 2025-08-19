@@ -25,13 +25,24 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: "npm"
+          # If the cache was contributing to bad perms, disable it for now:
+          # cache: "npm"
 
-      - name: Install
+      - name: Install deps
         run: npm install --no-audit --no-fund
 
+      # --- Fix permissions + prove vite exists ---
+      - name: Fix vite bin permissions
+        run: |
+          ls -l node_modules/.bin | sed -n '1,200p'
+          if [ ! -x node_modules/.bin/vite ]; then
+            chmod +x node_modules/.bin/vite
+          fi
+          node -v
+          npx vite --version
+
       - name: Build
-        run: npm run build
+        run: npx vite build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
