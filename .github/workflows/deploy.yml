@@ -14,6 +14,10 @@ concurrency:
   group: "pages"
   cancel-in-progress: true
 
+env:
+  # ✅ Make sure npm installs optional dependencies (needed for rollup native binary)
+  NPM_CONFIG_OPTIONAL: "true"
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,16 +31,19 @@ jobs:
           node-version: 20
           cache: "npm"
 
-      # Recreate the lockfile *on Linux* so npm pulls the right optional deps (rollup native)
-      - name: Recreate lockfile for Linux
+      # Clean everything and recreate lockfile on Linux so it includes rollup's native optional package
+      - name: Clean install state
         run: |
-          rm -f package-lock.json
-          npm install --package-lock-only --no-audit --no-fund
+          rm -rf node_modules package-lock.json
+          npm cache clean --force
 
-      - name: Install deps
-        run: npm ci --no-audit --no-fund
+      - name: Recreate lockfile with optional deps
+        run: npm install --package-lock-only --no-audit --no-fund --include=optional
 
-      # ✅ Call vite via Node to avoid .bin permission quirks
+      - name: Install deps (honor optional)
+        run: npm ci --no-audit --no-fund --include=optional
+
+      # ✅ Call Vite via Node to avoid .bin permission quirks
       - name: Build
         run: node node_modules/vite/bin/vite.js build
 
