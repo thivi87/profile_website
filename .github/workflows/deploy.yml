@@ -10,6 +10,7 @@ permissions:
   pages: write
   id-token: write
 
+# Cancel any in-progress Pages deploy when a new push arrives
 concurrency:
   group: "pages"
   cancel-in-progress: true
@@ -30,13 +31,9 @@ jobs:
       - name: Install deps
         run: npm install --no-audit --no-fund
 
-      # Fix vite perms then build
-      - name: Fix vite permissions
-        run: chmod +x node_modules/.bin/vite
-
+      # ✅ Call Vite via Node (no need to chmod or use npx)
       - name: Build
-        run: npx vite build
-        # or: run: node node_modules/vite/bin/vite.js build
+        run: node node_modules/vite/bin/vite.js build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
