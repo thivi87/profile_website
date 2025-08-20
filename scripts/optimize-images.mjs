@@ -8,7 +8,7 @@ const root = path.resolve(process.cwd(), "public", "assets");
 
 const targets = [
   // [globDir, maxWidth, maxHeight, quality]
-  ["badges", 240, 96, 80],    // width<=240, height<=96
+  ["badges", 120, 48, 80],    // width<=120, height<=48
   ["logos", 64, 64, 82],      // square 64x64 (issuers/companies); schools get tweaked below
   ["", 320, 320, 85],         // profile.jpg at root of /assets
 ];
