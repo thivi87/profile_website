@@ -10,9 +10,10 @@ permissions:
   pages: write
   id-token: write
 
+# ✅ Cancel any in-progress Pages deployment when a new run starts
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true   # <— change this to true
 
 jobs:
   build:
@@ -25,21 +26,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          # If the cache was contributing to bad perms, disable it for now:
-          # cache: "npm"
+          cache: "npm"
 
       - name: Install deps
         run: npm install --no-audit --no-fund
-
-      # --- Fix permissions + prove vite exists ---
-      - name: Fix vite bin permissions
-        run: |
-          ls -l node_modules/.bin | sed -n '1,200p'
-          if [ ! -x node_modules/.bin/vite ]; then
-            chmod +x node_modules/.bin/vite
-          fi
-          node -v
-          npx vite --version
 
       - name: Build
         run: npx vite build
