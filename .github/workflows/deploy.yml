@@ -10,7 +10,6 @@ permissions:
   pages: write
   id-token: write
 
-# Cancel any in-progress Pages deploy when a new push arrives
 concurrency:
   group: "pages"
   cancel-in-progress: true
@@ -28,10 +27,16 @@ jobs:
           node-version: 20
           cache: "npm"
 
-      - name: Install deps
-        run: npm install --no-audit --no-fund
+      # Recreate the lockfile *on Linux* so npm pulls the right optional deps (rollup native)
+      - name: Recreate lockfile for Linux
+        run: |
+          rm -f package-lock.json
+          npm install --package-lock-only --no-audit --no-fund
 
-      # ✅ Call Vite via Node (no need to chmod or use npx)
+      - name: Install deps
+        run: npm ci --no-audit --no-fund
+
+      # ✅ Call vite via Node to avoid .bin permission quirks
       - name: Build
         run: node node_modules/vite/bin/vite.js build
 
