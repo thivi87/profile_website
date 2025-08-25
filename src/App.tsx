@@ -139,7 +139,7 @@ export default function App() {
           <Card>
             <CardContent>
               <Section title="Licenses & Certifications" subtitle="Click any badge to view the verified credential">
-                <div className="grid" style={{ gridTemplateColumns: "1fr", gap: 16 }}>
+                <div className="licenses-grid" style={{ gridTemplateColumns: "1fr", gap: 16 }}>
                   {resume.certifications.map((c, i) => (
                     <div key={i} className="card">
                       <div className="content" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 20 }}>
