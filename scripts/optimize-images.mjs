@@ -55,7 +55,7 @@ const run = async () => {
   const schoolFiles = ["asu.png", "ucberkeley.png", "uci.png"]
     .map((n) => path.join(root, "logos", n))
     .filter((p) => fs.existsSync(p));
-  for (const f of schoolFiles) await clamp(f, 30, 30, 70);
+  for (const f of schoolFiles) await clamp(f, 56, 56, 82);
 
   console.log("Image optimization complete.");
 };

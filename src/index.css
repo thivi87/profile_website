@@ -27,8 +27,14 @@ body{
 a{color:inherit}
 a:hover{opacity:.9}
 
-.container{max-width:1152px;margin:0 auto;padding:24px}
+.container{max-width:1200px;margin:0 auto;padding:24px}
 .grid{display:grid;gap:24px}
+.licenses-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* full width tile */
+  gap: 16px;
+  max-width: 100%;    /* ← forces full width */
+}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:16px}
 .card .content{padding:24px}
 
