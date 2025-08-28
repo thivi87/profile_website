@@ -149,3 +149,5 @@ export const logosByOrg: Record<string, string> = {
   "UC Berkeley": "assets/logos/ucberkeley.png",
   "UC Irvine": "assets/logos/uci.png"
 };
+
+logosByOrg["Oportun, Inc."] = logosByOrg["Oportun"];
