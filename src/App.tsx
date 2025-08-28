@@ -5,6 +5,17 @@ import { Accordion } from "./components";
 import { Img } from "./components";
 import { OrgPill } from "./components";
 import { resume } from "./resumeData";
+import { BrowserRouter } from "react-router-dom";
+import { Analytics } from "./Analytics";
+
+export default function AppRoot() {
+  return (
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <Analytics />
+      {/* ...the rest of your app... */}
+    </BrowserRouter>
+  );
+}
 
 export default function App() {
   const [open, setOpen] = useState<Record<string, boolean>>({
