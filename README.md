@@ -1,18 +1,20 @@
-# Shaun Thivierge — Security Portfolio (Single Page)
+# Base44 App
 
-Deployed with GitHub Pages via Actions.
 
-## Features
-- Sticky left rail with profile photo, bio, and highlight tags
-- Skills Matrix **before** Experience
-- Phone number removed (email/LinkedIn only)
-- Licenses & Certifications — **full width tiles**
-- Education — **full width tiles**
-- Logos prominent across tiles and experience pills
-- Credly/ClickSafety verify links
-- SPA-friendly 404 redirect for GitHub Pages
+This app was created automatically by Base44.
+It's a Vite+React app that communicates with the Base44 API.
 
-## Dev
+## Running the app
+
 ```bash
-npm ci
+npm install
 npm run dev
+```
+
+## Building the app
+
+```bash
+npm run build
+```
+
+For more information and support, please contact Base44 support at app@base44.com.
